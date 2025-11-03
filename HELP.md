@@ -1,0 +1,4 @@
+所有初始化資料已經寫入init.sql中
+可以透過application.yaml
+來設定連續登入天數,啟動遊戲次數,遊玩遊戲次數,遊玩遊戲分數,任務完成獎勵
+api相關curl可以透過api_test_examples.sh來測試

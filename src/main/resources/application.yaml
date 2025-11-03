@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: task-center
+
+  # R2DBC MySQL configuration for reactive database access
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/taskdb
+    username: taskuser
+    password: taskpass
+    pool:
+      initial-size: 10
+      max-size: 50
+      max-idle-time: 30m
+      validation-query: SELECT 1
+
+  # Redis configuration for caching
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 3000ms
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+          max-wait: 2000ms
+
+# RocketMQ configuration for event messaging
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: task-center-producer-group
+    send-message-timeout: 3000
+    retry-times-when-send-failed: 2
+    max-message-size: 4194304
+
+# Application specific configurations
+app:
+  mission:
+    #連續登入天數
+    consecutive-login-days: 3
+    #啟動遊戲次數
+    launch-games-count: 3
+    #遊玩遊戲次數
+    play-games-count: 3
+    #遊玩遊戲分數
+    play-games-min-score: 1000
+    #任務完成獎勵
+    completion-reward-points: 777
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.example.demo: DEBUG
+    org.springframework.data.r2dbc: DEBUG
+    io.r2dbc.mysql: DEBUG
